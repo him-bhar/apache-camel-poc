@@ -1,17 +1,17 @@
 package com.himanshu.poc.camel.routes;
 
-import java.util.LinkedList;
-
-import org.apache.camel.Exchange;
-import org.apache.camel.Predicate;
+import com.himanshu.poc.TestBeanClass;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.ProcessorDefinition;
 import org.apache.camel.model.RouteDefinition;
-import org.apache.camel.processor.aggregate.AggregationStrategy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import com.himanshu.poc.TestBeanClass;
+import java.util.LinkedList;
 
 public class RoutesContainer {
+
+  private static Logger logger = LoggerFactory.getLogger(RoutesContainer.class);
   
   private RouteBuilder routeBuilder = new RouteBuilder(null) {
     
@@ -27,8 +27,8 @@ public class RoutesContainer {
     //RouteDefinition routeDefinition = this.routeBuilder.from(uri).bean(TestBeanClass.class, "invoke(${body})");
     RouteDefinition routeDefinition = this.routeBuilder.from(uri);
     routeDefinition.choice()
-      .when((exchange) -> {return exchange.getIn().getBody(String.class).equalsIgnoreCase("Hello Himanshu");}).to("direct:hello")
-      .when((exchange) -> {return exchange.getIn().getBody(String.class).equalsIgnoreCase("Bye Himanshu");}).to("direct:bye")
+      .when((exchange) -> exchange.getIn().getBody(String.class).equalsIgnoreCase("Hello Himanshu")).to("direct:hello")
+      .when((exchange) -> exchange.getIn().getBody(String.class).equalsIgnoreCase("Bye Himanshu")).to("direct:bye")
       .otherwise().to("direct:timepass")
       .endChoice()
       ;
@@ -39,12 +39,12 @@ public class RoutesContainer {
   public void createParallelRoute(String uri) {
     RouteDefinition routeDefinition = this.routeBuilder.from(uri);
     routeDefinition.multicast((oldExchange, newExchange) -> {
-      System.out.println("newExchange in: "+newExchange.getIn().getBody());
-      System.out.println("newExchange out: "+newExchange.getOut().getBody());
+      logger.info("newExchange in: "+newExchange.getIn().getBody());
+      logger.info("newExchange out: "+newExchange.getOut().getBody());
       newExchange.getOut().setBody(newExchange.getIn().getBody());
       if (oldExchange != null) {
-        System.out.println("oldExchange in: "+oldExchange.getIn().getBody());
-        System.out.println("oldExchange out: "+oldExchange.getOut().getBody());
+        logger.info("oldExchange in: "+oldExchange.getIn().getBody());
+        logger.info("oldExchange out: "+oldExchange.getOut().getBody());
       }
       return newExchange;
     }).parallelProcessing().to("direct:hello", "direct:bye", "direct:timepass");
@@ -52,10 +52,10 @@ public class RoutesContainer {
       
       @Override
       public Exchange aggregate(Exchange oldExchange, Exchange newExchange) {
-        System.out.println("newExchange in: "+newExchange.getIn().getBody());
-        System.out.println("newExchange out: "+newExchange.getOut().getBody());
-        System.out.println("oldExchange in: "+oldExchange.getIn().getBody());
-        System.out.println("oldExchange out: "+oldExchange.getOut().getBody());
+        logger.info("newExchange in: "+newExchange.getIn().getBody());
+        logger.info("newExchange out: "+newExchange.getOut().getBody());
+        logger.info("oldExchange in: "+oldExchange.getIn().getBody());
+        logger.info("oldExchange out: "+oldExchange.getOut().getBody());
         return newExchange;
       }
     });*/

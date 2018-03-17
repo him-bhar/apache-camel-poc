@@ -28,7 +28,7 @@ public class MainApp {
           @Override
           public void configure() throws Exception {
             from("file:C:/himanshu_work/sources/github/apache-camel-poc/camel-java-sample/src/data?noop=true")
-            .bean(TestBeanClass.class, "invoke(${body})")
+            //.bean(TestBeanClass.class, "invoke(${body})")
             .to("direct:choiceroute");
             /*.choice()
                 .when(xpath("/person/city = 'London'"))
