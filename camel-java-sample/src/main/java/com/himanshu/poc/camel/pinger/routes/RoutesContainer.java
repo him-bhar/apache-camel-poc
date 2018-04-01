@@ -1,4 +1,4 @@
-package com.himanshu.poc.camel.routes;
+package com.himanshu.poc.camel.pinger.routes;
 
 import com.himanshu.poc.TestBeanClass;
 import org.apache.camel.builder.RouteBuilder;

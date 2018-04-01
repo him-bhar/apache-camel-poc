@@ -1,4 +1,4 @@
-package com.himanshu.poc.camel.routes;
+package com.himanshu.poc.camel.pinger.routes;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;

@@ -4,9 +4,9 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>camel-java-sample</artifactId>
+  <artifactId>pinger-camel-component</artifactId>
   <packaging>jar</packaging>
-  <name>A Camel Route - Sample</name>
+  <name>Pinger - A custom camel component</name>
   <url>http://www.myorganization.org</url>
 
   <parent>
