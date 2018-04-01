@@ -5,6 +5,7 @@ A custom camel component has been developed for demonstrating how it works.
 This component acts both like a consumer as well as a producer.
 
 #Pinger (pinger:)
+
 ##As a consumer
 When a component acts like a consumer, it means that component will be defined for use at the **from** level of the route.
 ```
