@@ -17,6 +17,7 @@
 		<commons.io.version>2.5</commons.io.version>
 		<camel.parent.version>2.18.1</camel.parent.version>
 		<log4j2-version>2.7</log4j2-version>
+		<activemq.version>5.15.3</activemq.version>
 	</properties>
 
 	<modules>
@@ -56,6 +57,11 @@
 				<version>${log4j2-version}</version>
 				<scope>runtime</scope>
 			</dependency>
+			<dependency>
+				<groupId>org.apache.camel</groupId>
+				<artifactId>camel-jms</artifactId>
+				<version>${camel.parent.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>org.apache.camel</groupId>
@@ -68,6 +74,24 @@
 				<artifactId>commons-io</artifactId>
 				<version>${commons.io.version}</version>
 			</dependency>
+
+			<dependency>
+				<groupId>org.apache.activemq</groupId>
+				<artifactId>activemq-broker</artifactId>
+				<version>${activemq.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.activemq</groupId>
+				<artifactId>activemq-camel</artifactId>
+				<version>${activemq.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>pinger-camel-component</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 	<build>
