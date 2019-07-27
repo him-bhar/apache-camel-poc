@@ -1,6 +1,7 @@
 package com.himanshu.poc.camel.jms;
 
-import com.himanshu.poc.camel.pinger.component.PingerComponent;
+
+import com.himanshu.camel.component.pinger.PingerComponent;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
@@ -50,7 +51,7 @@ public class JmsRouteTest extends CamelTestSupport {
 
   @Test
   public void testSendAndConsumeRoute() throws Exception {
-    JndiRegistry jndiContext = (JndiRegistry) ((PropertyPlaceholderDelegateRegistry)context().getRegistry()).getRegistry();
+    JndiRegistry jndiContext = (JndiRegistry) ((PropertyPlaceholderDelegateRegistry) context().getRegistry()).getRegistry();
     jndiContext.bind("custom-connection-factory", connectionFactory);
     jndiContext.bind("messagePrinter", new MessagePrinter());
 
@@ -62,10 +63,10 @@ public class JmsRouteTest extends CamelTestSupport {
       @Override
       public void configure() throws Exception {
         from("pinger://ping?pings=10&pingInterval=1")
-                .process(exchange -> logger.info("Processing message: {}", exchange.getIn().getBody()))
-                .to("jms:queue:temp_queue?connectionFactory=#custom-connection-factory")
-                .to("bean:messagePrinter?method=printMessage(${body})")
-                .to("mock:result");
+              .process(exchange -> logger.info("Processing message: {}", exchange.getIn().getBody()))
+              .to("jms:queue:temp_queue?connectionFactory=#custom-connection-factory")
+              .to("bean:messagePrinter?method=printMessage(${body})")
+              .to("mock:result");
       }
     };
 
@@ -79,8 +80,8 @@ public class JmsRouteTest extends CamelTestSupport {
       @Override
       public void configure() throws Exception {
         from("jms:queue:temp_queue?connectionFactory=#custom-connection-factory")
-                .to("bean:messagePrinter?method=printMessage(${body})")
-                .to("mock:result2");
+              .to("bean:messagePrinter?method=printMessage(${body})")
+              .to("mock:result2");
       }
     };
 

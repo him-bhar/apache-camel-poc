@@ -1,7 +1,5 @@
-package com.himanshu.poc.camel.pinger.endpoint;
+package com.himanshu.camel.component.pinger;
 
-import com.himanshu.poc.camel.pinger.consumer.PingerConsumer;
-import com.himanshu.poc.camel.pinger.producer.PingerProducer;
 import org.apache.camel.*;
 import org.apache.camel.impl.DefaultEndpoint;
 import org.apache.camel.spi.Metadata;

@@ -1,6 +1,5 @@
-package com.himanshu.poc.camel.pinger.component;
+package com.himanshu.camel.component.pinger;
 
-import com.himanshu.poc.camel.pinger.endpoint.PingerEndpoint;
 import org.apache.camel.Endpoint;
 import org.apache.camel.impl.DefaultComponent;
 

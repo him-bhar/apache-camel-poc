@@ -1,4 +1,4 @@
-package com.himanshu.poc.camel.pinger.producer;
+package com.himanshu.camel.component.pinger;
 
 import org.apache.camel.Endpoint;
 import org.apache.camel.Exchange;
